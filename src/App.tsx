@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { InfosFr } from "./components/panels/InfosFr";
 import { Settings } from "./components/panels/Settings";
 import { useSettings } from "./hooks/useSettings";
-import { Tradle } from "./components/Tradle";
+import { Tradele } from "./components/Tradele";
 import { Stats } from "./components/panels/Stats";
 
 function App() {
@@ -72,7 +72,7 @@ function App() {
               ❔
             </button>
             <h1 className="text-4xl font-bold uppercase tracking-wide text-center my-1 flex-auto">
-              <span className="text-red-600">TRAD</span>LE
+              <span className="text-red-600">TRADE</span>LE
             </h1>
             <button
               className="ml-3 text-xl"
@@ -91,7 +91,7 @@ function App() {
           </header>
           <Game settingsData={settingsData} />
           <footer className="flex justify-center text-sm mt-8 mb-1">
-            ❤️ <Tradle />? -
+            ❤️ <Tradele />? -
             <a
               className="underline pl-1"
               href="https://oec.world"

@@ -1,9 +1,9 @@
 import React from "react";
 
-export function Tradle() {
+export function Tradele() {
   return (
     <span className="font-bold">
-      <span className="text-red-600">TRAD</span>LE
+      <span className="text-red-600">TRADE</span>LE
     </span>
   );
 }
