@@ -1,7 +1,7 @@
 import { Guesses } from "../Guesses";
 import { Panel } from "./Panel";
 import React from "react";
-import { Worldle } from "../Worldle";
+import { Tradle } from "../Tradle";
 import { formatDistance } from "../../domain/geography";
 import { SettingsData } from "../../hooks/useSettings";
 
@@ -17,7 +17,7 @@ export function InfosFr({ isOpen, close, settingsData }: InfosProps) {
       <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
         <div>
           {" "}
-          Devine le <Worldle /> en 6 essais.
+          Devine le <Tradle /> en 6 essais.
         </div>
         <div>Chaque essai doit être un pays, un territoire, etc... valide.</div>
         <div>
@@ -86,7 +86,7 @@ export function InfosFr({ isOpen, close, settingsData }: InfosProps) {
         </div>
       </div>
       <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3 font-bold">
-        Un nouveau <Worldle /> sera disponible chaque jour !
+        Un nouveau <Tradle /> sera disponible chaque jour !
       </div>
       <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
         <div className="font-bold">A propos de la distance</div>
@@ -102,7 +102,7 @@ export function InfosFr({ isOpen, close, settingsData }: InfosProps) {
         </div>
       </div>
       <div className="space-y-3 text-justify border-b-2 border-gray-200 pb-3 mb-3">
-        <Worldle /> a été <span className="font-bold">très</span> inspiré par{" "}
+        <Tradle /> a été <span className="font-bold">très</span> inspiré par{" "}
         <a
           className="underline"
           href="https://www.powerlanguage.co.uk/wordle/"

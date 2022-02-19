@@ -6,11 +6,13 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import {
   countries,
   getCountryName,
   sanitizeCountryName,
+  countryISOMapping,
 } from "../domain/countries";
 import { useGuesses } from "../hooks/useGuesses";
 import { CountryInput } from "./CountryInput";
@@ -21,6 +23,22 @@ import { useTranslation } from "react-i18next";
 import { SettingsData } from "../hooks/useSettings";
 import { useMode } from "../hooks/useMode";
 import { useCountry } from "../hooks/useCountry";
+
+export const IFrame = ({ children, ...props }: any) => {
+  const [contentRef, setContentRef] = useState(null);
+  // @ts-expect-error: ignore
+  const mountNode = contentRef?.contentWindow?.document?.body;
+  console.log("mountNode!!!", mountNode);
+  if (mountNode) {
+    // @ts-expect-error: ignore
+    mountNode.querySelectorAll(".vb-title").forEach((el) => el.remove());
+  }
+  return (
+    <iframe {...props} ref={setContentRef}>
+      {mountNode && createPortal(children, mountNode)}
+    </iframe>
+  );
+};
 
 function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
@@ -100,6 +118,8 @@ export function Game({ settingsData }: GameProps) {
     }
   }, [country, guesses, i18n.resolvedLanguage]);
 
+  const x = countryISOMapping[country.code].toLowerCase();
+
   return (
     <div className="flex-grow flex flex-col mx-2">
       {hideImageMode && !gameEnded && (
@@ -111,21 +131,14 @@ export function Game({ settingsData }: GameProps) {
           {t("showCountry")}
         </button>
       )}
-      <div className="my-1">
-        <img
-          className={`max-h-52 m-auto transition-transform duration-700 ease-in dark:invert ${
-            hideImageMode && !gameEnded ? "h-0" : "h-full"
-          }`}
-          alt="country to guess"
-          src={`images/countries/${country.code.toLowerCase()}/vector.svg`}
-          style={
-            rotationMode && !gameEnded
-              ? {
-                  transform: `rotate(${randomAngle}deg) scale(${imageScale})`,
-                }
-              : {}
-          }
-        />
+      <div className="my-1 mx-auto">
+        <IFrame
+          title="Country to guess"
+          width="390"
+          height="315"
+          src={`https://staging.oec.world/en/visualize/embed/tree_map/hs92/export/${x}/all/show/2019/?controls=false&title=false`}
+          frameBorder="0"
+        ></IFrame>
       </div>
       {rotationMode && !hideImageMode && !gameEnded && (
         <button

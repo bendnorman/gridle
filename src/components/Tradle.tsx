@@ -1,9 +1,9 @@
 import React from "react";
 
-export function Worldle() {
+export function Tradle() {
   return (
     <span className="font-bold">
-      WOR<span className="text-green-600">L</span>DLE
+      <span className="text-red-600">TRAD</span>LE
     </span>
   );
 }

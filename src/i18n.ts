@@ -32,7 +32,7 @@ const resources = {
         averageBestDistance: "Best Distances Average",
         guessDistribution: "Guess distribution:",
       },
-      buyMeACoffee: "Buy me a ☕!",
+      buyMeACoffee: "Get more trade data on the OEC! 🌎",
     },
   },
   fr: {
