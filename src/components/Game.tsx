@@ -137,7 +137,7 @@ export function Game({ settingsData }: GameProps) {
           title="Country to guess"
           width="390"
           height="315"
-          src={`https://oec.world/en/visualize/embed/tree_map/hs92/export/${country3LetterCode}/all/show/2019/?controls=false&title=false`}
+          src={`https://oec.world/en/visualize/embed/tree_map/hs92/export/${country3LetterCode}/all/show/2020/?controls=false&title=false`}
           frameBorder="0"
         />
       </div>
