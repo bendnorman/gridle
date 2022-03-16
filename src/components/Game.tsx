@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import {
   countries,
@@ -24,22 +23,6 @@ import { SettingsData } from "../hooks/useSettings";
 import { useMode } from "../hooks/useMode";
 import { useCountry } from "../hooks/useCountry";
 
-export const IFrame = ({ children, ...props }: any) => {
-  const [contentRef, setContentRef] = useState(null);
-  // @ts-expect-error: ignore
-  const mountNode = contentRef?.contentWindow?.document?.body;
-  console.log("mountNode!!!", mountNode);
-  if (mountNode) {
-    // @ts-expect-error: ignore
-    mountNode.querySelectorAll(".vb-title").forEach((el) => el.remove());
-  }
-  return (
-    <iframe {...props} ref={setContentRef}>
-      {mountNode && createPortal(children, mountNode)}
-    </iframe>
-  );
-};
-
 function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
 }
@@ -56,7 +39,7 @@ export function Game({ settingsData }: GameProps) {
 
   const countryInputRef = useRef<HTMLInputElement>(null);
 
-  const [country, randomAngle, imageScale] = useCountry(dayString);
+  const [country, randomAngle, imageScale] = useCountry(`tradle.${dayString}`);
 
   const [currentGuess, setCurrentGuess] = useState("");
   const [guesses, addGuess] = useGuesses(dayString);
@@ -118,7 +101,7 @@ export function Game({ settingsData }: GameProps) {
     }
   }, [country, guesses, i18n.resolvedLanguage]);
 
-  const x = countryISOMapping[country.code].toLowerCase();
+  const country3LetterCode = countryISOMapping[country.code].toLowerCase();
 
   return (
     <div className="flex-grow flex flex-col mx-2">
@@ -131,14 +114,32 @@ export function Game({ settingsData }: GameProps) {
           {t("showCountry")}
         </button>
       )}
-      <div className="my-1 mx-auto">
-        <IFrame
+      {/* <div className="my-1 mx-auto"> */}
+      <h2 className="font-bold text-center">
+        Guess which country exports these products!
+      </h2>
+      <div
+        style={{
+          position: "relative",
+          paddingBottom: "70%",
+          paddingTop: "25px",
+          height: 0,
+        }}
+      >
+        <iframe
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+          }}
           title="Country to guess"
           width="390"
           height="315"
-          src={`https://staging.oec.world/en/visualize/embed/tree_map/hs92/export/${x}/all/show/2019/?controls=false&title=false`}
+          src={`https://oec.world/en/visualize/embed/tree_map/hs92/export/${country3LetterCode}/all/show/2019/?controls=false&title=false`}
           frameBorder="0"
-        ></IFrame>
+        />
       </div>
       {rotationMode && !hideImageMode && !gameEnded && (
         <button
@@ -166,31 +167,47 @@ export function Game({ settingsData }: GameProps) {
               rotationMode={rotationMode}
             />
             <a
-              className="underline w-full text-center block mt-4"
-              href={`https://www.google.com/maps?q=${getCountryName(
-                i18n.resolvedLanguage,
-                country
-              )}&hl=${i18n.resolvedLanguage}`}
+              className="underline w-full text-center block mt-4 flex justify-center"
+              href={`https://oec.world/en/profile/country/${country3LetterCode}`}
               target="_blank"
               rel="noopener noreferrer"
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
               {t("showOnGoogleMaps")}
             </a>
           </>
         ) : (
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col">
+            <div className="">
               <CountryInput
                 inputRef={countryInputRef}
                 currentGuess={currentGuess}
                 setCurrentGuess={setCurrentGuess}
               />
-              <button
+              {/* <button
                 className="border-2 uppercase my-0.5 hover:bg-gray-50 active:bg-gray-100 dark:hover:bg-slate-800 dark:active:bg-slate-700"
                 type="submit"
               >
                 🌍 {t("guess")}
-              </button>
+              </button> */}
+              <div className="text-left">
+                <button className="my-2 inline-block justify-end bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded items-center">
+                  🌍 <span>Guess</span>
+                </button>
+              </div>
             </div>
           </form>
         )}

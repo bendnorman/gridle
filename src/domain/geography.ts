@@ -34,7 +34,7 @@ export function generateSquareCharacters(
   characters.fill("🟩", 0, greenSquareCount);
   characters.fill("🟨", greenSquareCount, greenSquareCount + yellowSquareCount);
   characters.fill(
-    theme === "light" ? "⬜" : "⬛",
+    theme === "light" ? "⬜" : "⬜",
     greenSquareCount + yellowSquareCount
   );
 
@@ -48,6 +48,6 @@ export function formatDistance(
   const distanceInKm = distanceInMeters / 1000;
 
   return distanceUnit === "km"
-    ? `${Math.round(distanceInKm)}km`
-    : `${Math.round(distanceInKm * 0.621371)}mi`;
+    ? `${Math.round(distanceInKm).toLocaleString("en-US")} km`
+    : `${Math.round(distanceInKm * 0.621371).toLocaleString("en-US")} mi`;
 }

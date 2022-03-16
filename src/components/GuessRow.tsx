@@ -8,6 +8,7 @@ import { Guess } from "../domain/guess";
 import React, { useCallback, useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { SettingsData } from "../hooks/useSettings";
+import { getCountryPrettyName } from "../domain/countries";
 
 const DIRECTION_ARROWS: Record<Direction, string> = {
   N: "⬆️",
@@ -75,7 +76,7 @@ export function GuessRow({
       return (
         <div
           onClick={handleClickOnEmptyRow}
-          className={`col-span-7 h-8 bg-gray-200 dark:bg-slate-600`}
+          className={`bg-stone-200 rounded-lg my-1 col-span-7 h-8 bg-gray-200`}
         />
       );
     case "RUNNING":
@@ -108,20 +109,44 @@ export function GuessRow({
     case "ENDED":
       return (
         <>
-          <div className="flex items-center justify-center border-2 h-8 col-span-3 animate-reveal">
+          <div
+            className={
+              guess?.distance === 0
+                ? "bg-oec-yellow rounded-lg flex items-center h-8 col-span-3 animate-reveal pl-2"
+                : "bg-gray-200 rounded-lg flex items-center h-8 col-span-3 animate-reveal pl-2"
+            }
+          >
             <p className="text-ellipsis overflow-hidden whitespace-nowrap">
-              {guess?.name.toUpperCase()}
+              {getCountryPrettyName(guess?.name)}
             </p>
           </div>
-          <div className="flex items-center justify-center border-2 h-8 col-span-2 animate-reveal">
+          <div
+            className={
+              guess?.distance === 0
+                ? "bg-oec-yellow rounded-lg flex items-center justify-center h-8 col-span-2 animate-reveal"
+                : "bg-gray-200 rounded-lg flex items-center justify-center h-8 col-span-2 animate-reveal"
+            }
+          >
             {guess && formatDistance(guess.distance, distanceUnit)}
           </div>
-          <div className="flex items-center justify-center border-2 h-8 col-span-1 animate-reveal">
+          <div
+            className={
+              guess?.distance === 0
+                ? "bg-oec-yellow rounded-lg flex items-center justify-center h-8 col-span-1 animate-reveal"
+                : "bg-gray-200 rounded-lg flex items-center justify-center h-8 col-span-1 animate-reveal"
+            }
+          >
             {guess?.distance === 0
               ? "🎉"
               : guess && DIRECTION_ARROWS[guess.direction]}
           </div>
-          <div className="flex items-center justify-center border-2 h-8 col-span-1 animate-reveal animate-pop">
+          <div
+            className={
+              guess?.distance === 0
+                ? "bg-oec-yellow rounded-lg flex items-center justify-center h-8 col-span-1 animate-reveal animate-pop"
+                : "bg-gray-200 rounded-lg flex items-center justify-center h-8 col-span-1 animate-reveal animate-pop"
+            }
+          >
             {`${proximity}%`}
           </div>
         </>

@@ -11,7 +11,7 @@ import { Guess } from "../domain/guess";
 import React from "react";
 import { SettingsData } from "../hooks/useSettings";
 
-const START_DATE = DateTime.fromISO("2022-01-21");
+const START_DATE = DateTime.fromISO("2022-03-06");
 
 interface ShareProps {
   guesses: Guess[];
@@ -53,7 +53,7 @@ export function Share({
       })
       .join("\n");
 
-    return [title, guessString, "https://oec.world/tradle"].join("\n");
+    return [title, guessString, "https://oec.world/en/tradle"].join("\n");
   }, [dayString, guesses, hideImageMode, rotationMode, theme]);
 
   return (
@@ -64,7 +64,7 @@ export function Share({
         format: "text/plain",
       }}
     >
-      <button className="border-2 px-4 uppercase bg-green-600 hover:bg-green-500 active:bg-green-700 text-white w-full">
+      <button className="p-2 mt-4 rounded-lg font-semibold bg-oec-orange hover:bg-oec-yellow active:bg-oec-orange text-white w-full">
         {t("share")}
       </button>
     </CopyToClipboard>

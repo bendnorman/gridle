@@ -24,7 +24,7 @@ export function Settings({
         <div className="flex p-1">
           <select
             id="setting-distanceUnit"
-            className="h-8 dark:bg-slate-800"
+            className="h-8"
             value={settingsData.distanceUnit}
             onChange={(e) =>
               updateSettings({ distanceUnit: e.target.value as "km" | "miles" })
@@ -43,7 +43,7 @@ export function Settings({
         <div className="flex p-1">
           <select
             id="setting-theme"
-            className="h-8 dark:bg-slate-800"
+            className="h-8"
             value={settingsData.theme}
             onChange={(e) =>
               updateSettings({ theme: e.target.value as "light" | "dark" })
@@ -57,38 +57,6 @@ export function Settings({
             htmlFor="setting-theme"
           >
             {t("settings.theme")}
-          </label>
-        </div>
-      </div>
-      <div className="my-4">
-        <header className="my-2">
-          <h3 className="text-lg font-bold">
-            {t("settings.difficultyModifiers")}
-          </h3>
-          <div className="text-sm italic text-gray-500">
-            {t("settings.startingNextDay")}
-          </div>
-        </header>
-        <div className="flex p-1">
-          <input
-            type="checkbox"
-            id="setting-noImage"
-            checked={settingsData.noImageMode}
-            onChange={(e) => updateSettings({ noImageMode: e.target.checked })}
-          />
-          <label className="flex-1 ml-2" htmlFor="setting-noImage">
-            {t("settings.noImageMode")}
-          </label>
-        </div>
-        <div className="flex p-1">
-          <input
-            type="checkbox"
-            id="setting-rotationMode"
-            checked={settingsData.rotationMode}
-            onChange={(e) => updateSettings({ rotationMode: e.target.checked })}
-          />
-          <label className="flex-1 ml-2" htmlFor="setting-rotationMode">
-            {t("settings.rotationMode")}
           </label>
         </div>
       </div>

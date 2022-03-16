@@ -19,7 +19,7 @@ export function useCountry(dayString: string): [Country, number, number] {
 
     return (
       forcedCountry ??
-      countriesWithImage[
+      countriesWithImage.reverse()[
         Math.floor(seedrandom.alea(dayString)() * countriesWithImage.length)
       ]
     );

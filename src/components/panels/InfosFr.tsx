@@ -127,22 +127,11 @@ export function InfosFr({ isOpen, close, settingsData }: InfosProps) {
           Fait par{" "}
           <a
             className="underline"
-            href="https://twitter.com/teuteuf"
+            href="https://twitter.com/ximoes"
             target="_blank"
             rel="noopener noreferrer"
           >
-            @teuteuf
-          </a>
-        </div>
-        <div>
-          Vous voulez me soutenir ?{" "}
-          <a
-            className="underline"
-            href="https://www.ko-fi.com/teuteuf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Offrez moi un café ! ☕
+            @ximoes
           </a>
         </div>
       </div>

@@ -18,7 +18,7 @@ export function Guesses({
 }: GuessesProps) {
   return (
     <div>
-      <div className="grid grid-cols-7 gap-1 text-center">
+      <div className="grid grid-cols-7 gap-1 text-center font-semibold">
         {Array.from(Array(rowCount).keys()).map((index) => (
           <GuessRow
             key={index}

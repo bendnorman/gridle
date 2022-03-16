@@ -3,6 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        "oec-orange": "#FFA63F",
+        "oec-yellow": "#FFD422",
+      },
       keyframes: {
         reveal: {
           "0%": {
