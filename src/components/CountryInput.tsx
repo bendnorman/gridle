@@ -1,11 +1,11 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, Dispatch, SetStateAction } from "react";
 import { countries, sanitizeCountryName } from "../domain/countries";
 import { Group, Text, Autocomplete } from "@mantine/core";
 import { flag } from "country-emoji";
 
 interface CountryInputProps {
-  inputRef: React.RefObject<HTMLInputElement>;
-  currentGuess: string;
+  setCountryValue: Dispatch<SetStateAction<string>>;
+  countryValue: string;
   setCurrentGuess: (guess: string) => void;
 }
 
@@ -28,7 +28,11 @@ const AutoCompleteItem = forwardRef<HTMLDivElement, ItemProps>(
 );
 AutoCompleteItem.displayName = "Autocomplete Item";
 
-export function CountryInput({ setCurrentGuess }: CountryInputProps) {
+export function CountryInput({
+  countryValue,
+  setCountryValue,
+  setCurrentGuess,
+}: CountryInputProps) {
   return (
     <Autocomplete
       autoComplete="noautocompleteplz"
@@ -46,6 +50,8 @@ export function CountryInput({ setCurrentGuess }: CountryInputProps) {
       onItemSubmit={(item) => {
         setCurrentGuess(sanitizeCountryName(item.value));
       }}
+      value={countryValue}
+      onChange={setCountryValue}
     />
   );
 }

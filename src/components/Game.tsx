@@ -41,7 +41,8 @@ export function Game({ settingsData }: GameProps) {
 
   const [country, randomAngle, imageScale] = useCountry(`tradle.${dayString}`);
 
-  const [currentGuess, setCurrentGuess] = useState("");
+  const [currentGuess, setCurrentGuess] = useState<string>("");
+  const [countryValue, setCountryValue] = useState<string>("");
   const [guesses, addGuess] = useGuesses(dayString);
   const [hideImageMode, setHideImageMode] = useMode(
     "hideImageMode",
@@ -81,6 +82,7 @@ export function Game({ settingsData }: GameProps) {
 
       addGuess(newGuess);
       setCurrentGuess("");
+      setCountryValue("");
 
       if (newGuess.distance === 0) {
         toast.success(t("welldone"), { delay: 2000 });
@@ -193,8 +195,8 @@ export function Game({ settingsData }: GameProps) {
           <form onSubmit={handleSubmit}>
             <div className="">
               <CountryInput
-                inputRef={countryInputRef}
-                currentGuess={currentGuess}
+                countryValue={countryValue}
+                setCountryValue={setCountryValue}
                 setCurrentGuess={setCurrentGuess}
               />
               {/* <button
