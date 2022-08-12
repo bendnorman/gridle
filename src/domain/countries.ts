@@ -494,12 +494,12 @@ export const countries: Country[] = [
   { code: "GY", latitude: 4.860416, longitude: -58.93018, name: "Guyana" },
   // { code: "GZ", latitude: 31.354676, longitude: 34.308825, name: "Gaza Strip" },
   { code: "HK", latitude: 22.396428, longitude: 114.109497, name: "Hong Kong" },
-  {
-    code: "HM",
-    latitude: -53.08181,
-    longitude: 73.504158,
-    name: "Heard Island and McDonald Islands",
-  },
+  // {
+  //   code: "HM",
+  //   latitude: -53.08181,
+  //   longitude: 73.504158,
+  //   name: "Heard Island and McDonald Islands",
+  // },
   { code: "HN", latitude: 15.199999, longitude: -86.241905, name: "Honduras" },
   { code: "HR", latitude: 45.1, longitude: 15.2, name: "Croatia" },
   { code: "HT", latitude: 18.971187, longitude: -72.285215, name: "Haiti" },
@@ -578,7 +578,7 @@ export const countries: Country[] = [
   { code: "MA", latitude: 31.791702, longitude: -7.09262, name: "Morocco" },
   // { code: "MC", latitude: 43.750298, longitude: 7.412841, name: "Monaco" },
   { code: "MD", latitude: 47.411631, longitude: 28.369885, name: "Moldova" },
-  { code: "ME", latitude: 42.708678, longitude: 19.37439, name: "Montenegro" },
+  // { code: "ME", latitude: 42.708678, longitude: 19.37439, name: "Montenegro" },
   {
     code: "MG",
     latitude: -18.766947,
