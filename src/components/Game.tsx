@@ -24,7 +24,6 @@ import { SettingsData } from "../hooks/useSettings";
 import { useMode } from "../hooks/useMode";
 import { useCountry } from "../hooks/useCountry";
 import axios from "axios";
-import { SelectDropdown } from "@mantine/core/lib/components/Select/SelectDropdown/SelectDropdown";
 
 function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
@@ -43,7 +42,9 @@ export function Game({ settingsData }: GameProps) {
 
   const countryInputRef = useRef<HTMLInputElement>(null);
 
-  let [country] = useCountry(`tradle.${dayString}`);
+  const countryData = useCountry(`tradle.${dayString}`);
+  let country = countryData[0];
+
   if (isAprilFools) {
     country = {
       code: "AJ",

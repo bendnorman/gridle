@@ -1,29 +1,48 @@
-import { useMemo } from "react";
+import { csv } from "d3-fetch";
+import { useEffect, useMemo, useState } from "react";
 import seedrandom from "seedrandom";
 import { countriesWithImage, Country } from "../domain/countries";
 
-const forcedCountries: Record<string, string> = {
-  "2022-02-02": "TD",
-  "2022-02-03": "PY",
-};
+interface DateCountry {
+  country: string;
+  date: string;
+}
 
 export function useCountry(dayString: string): [Country, number, number] {
+  const [forcedCountryCode, setForcedCountryCode] = useState("");
+  const date = new Date(dayString);
+  const currDate = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
+
+  useEffect(() => {
+    csv("data.csv", (d) => {
+      return { country: d.country, date: d.date };
+    }).then((data) => {
+      setForcedCountryCode(
+        data.length
+          ? (
+              data.find((el) => el.date === currDate) as DateCountry
+            )?.country.toUpperCase() || ""
+          : ""
+      );
+    });
+  }, [currDate]);
+
   const country = useMemo(() => {
-    const forcedCountryCode = forcedCountries[dayString];
     const forcedCountry =
-      forcedCountryCode != null
+      forcedCountryCode !== ""
         ? countriesWithImage.find(
             (country) => country.code === forcedCountryCode
           )
         : undefined;
-
     return (
       forcedCountry ??
       countriesWithImage.reverse()[
         Math.floor(seedrandom.alea(dayString)() * countriesWithImage.length)
       ]
     );
-  }, [dayString]);
+  }, [forcedCountryCode, dayString]);
 
   const randomAngle = useMemo(
     () => seedrandom.alea(dayString)() * 360,
