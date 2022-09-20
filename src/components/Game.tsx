@@ -26,7 +26,7 @@ import { useCountry } from "../hooks/useCountry";
 import axios from "axios";
 
 function getDayString() {
-  return DateTime.now().toFormat("yyyy-MM-dd");
+  return DateTime.now().toFormat("yyyy-M-dd");
 }
 
 const MAX_TRY_COUNT = 6;
