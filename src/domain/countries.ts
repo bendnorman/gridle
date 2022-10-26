@@ -246,6 +246,8 @@ const countryCodesWithImage = [
   "ua",
   "ve",
   "ye",
+  "tv",
+  "mh",
 ];
 
 export interface Country {
@@ -326,6 +328,12 @@ export const countries: Country[] = [
   { code: "BH", latitude: 25.930414, longitude: 50.637772, name: "Bahrain" },
   { code: "BI", latitude: -3.373056, longitude: 29.918886, name: "Burundi" },
   { code: "BJ", latitude: 9.30769, longitude: 2.315834, name: "Benin" },
+  {
+    code: "BL",
+    latitude: 17.9139222,
+    longitude: -62.8338521,
+    name: "Saint Barthélemy",
+  },
   { code: "BM", latitude: 32.321384, longitude: -64.75737, name: "Bermuda" },
   { code: "BN", latitude: 4.535277, longitude: 114.727669, name: "Brunei" },
   { code: "BO", latitude: -16.290154, longitude: -63.588653, name: "Bolivia" },
@@ -579,6 +587,12 @@ export const countries: Country[] = [
   // { code: "MC", latitude: 43.750298, longitude: 7.412841, name: "Monaco" },
   { code: "MD", latitude: 47.411631, longitude: 28.369885, name: "Moldova" },
   // { code: "ME", latitude: 42.708678, longitude: 19.37439, name: "Montenegro" },
+  {
+    code: "MF",
+    latitude: 18.075,
+    longitude: -63.060001,
+    name: "Saint Maarten",
+  },
   {
     code: "MG",
     latitude: -18.766947,
@@ -839,12 +853,12 @@ export const countries: Country[] = [
     name: "Saint Vincent and the Grenadines",
   },
   { code: "VE", latitude: 6.42375, longitude: -66.58973, name: "Venezuela" },
-  // {
-  //   code: "VG",
-  //   latitude: 18.420695,
-  //   longitude: -64.639968,
-  //   name: "British Virgin Islands",
-  // },
+  {
+    code: "VG",
+    latitude: 18.420695,
+    longitude: -64.639968,
+    name: "British Virgin Islands",
+  },
   // {
   //   code: "VI",
   //   latitude: 18.335765,

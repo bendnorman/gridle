@@ -150,10 +150,10 @@ export function Game({ settingsData }: GameProps) {
 
   let iframeSrc = "https://oec.world/en/tradle/aprilfools.html";
   let oecLink = "https://oec.world/";
+  const country3LetterCode = country?.code
+    ? countryISOMapping[country.code].toLowerCase()
+    : "";
   if (!isAprilFools) {
-    const country3LetterCode = country?.code
-      ? countryISOMapping[country.code].toLowerCase()
-      : "";
     iframeSrc = `https://oec.world/en/visualize/embed/tree_map/hs92/export/${country3LetterCode}/all/show/2020/?controls=false&title=false&click=false`;
     oecLink = `https://oec.world/en/profile/country/${country3LetterCode}`;
   }
@@ -181,20 +181,22 @@ export function Game({ settingsData }: GameProps) {
           height: 0,
         }}
       >
-        <iframe
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-          }}
-          title="Country to guess"
-          width="390"
-          height="315"
-          src={iframeSrc}
-          frameBorder="0"
-        />
+        {country3LetterCode ? (
+          <iframe
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+            title="Country to guess"
+            width="390"
+            height="315"
+            src={iframeSrc}
+            frameBorder="0"
+          />
+        ) : null}
       </div>
       {rotationMode && !hideImageMode && !gameEnded && (
         <button

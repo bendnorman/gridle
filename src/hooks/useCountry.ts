@@ -33,6 +33,5 @@ export function useCountry(dayString: string): [Country | undefined] {
         : undefined;
     return forcedCountry;
   }, [forcedCountryCode]);
-
   return [country];
 }
