@@ -248,6 +248,8 @@ const countryCodesWithImage = [
   "ye",
   "tv",
   "mh",
+  "fm",
+  "mp",
 ];
 
 export interface Country {
@@ -468,7 +470,7 @@ export const countries: Country[] = [
   // },
   // { code: "GG", latitude: 49.465691, longitude: -2.585278, name: "Guernsey" },
   { code: "GH", latitude: 7.946527, longitude: -1.023194, name: "Ghana" },
-  // { code: "GI", latitude: 36.137741, longitude: -5.345374, name: "Gibraltar" },
+  { code: "GI", latitude: 36.137741, longitude: -5.345374, name: "Gibraltar" },
   { code: "GL", latitude: 71.706936, longitude: -42.604303, name: "Greenland" },
   { code: "GM", latitude: 13.443182, longitude: -15.310139, name: "Gambia" },
   { code: "GN", latitude: 9.945587, longitude: -9.696645, name: "Guinea" },
@@ -884,6 +886,12 @@ export const countries: Country[] = [
   },
   { code: "ZM", latitude: -13.133897, longitude: 27.849332, name: "Zambia" },
   { code: "ZW", latitude: -19.015438, longitude: 29.154857, name: "Zimbabwe" },
+  {
+    code: "BQ",
+    latitude: 12.103832918,
+    longitude: -68.283498866,
+    name: "Bonaire",
+  },
 ];
 
 export const fictionalCountries: Country[] = [
@@ -1033,6 +1041,7 @@ export const countryISOMapping: Iso = {
   BH: "BHR",
   BD: "BGD",
   BB: "BRB",
+  BQ: "BES",
   BY: "BLR",
   BE: "BEL",
   BZ: "BLZ",
@@ -1275,7 +1284,9 @@ export function getCountryPrettyName(
     if (country) {
       return isAprilFools
         ? `${country.name}`
-        : `${flag(country?.code)} ${country.name}`;
+        : flag(country?.code)
+        ? `${flag(country?.code)} ${country.name}`
+        : `${country.name}`;
     }
   }
   return `${str}`;
