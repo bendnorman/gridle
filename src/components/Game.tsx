@@ -138,13 +138,28 @@ export function Game({ settingsData }: GameProps) {
 
   useEffect(() => {
     if (ipData) {
-      axios.post("/tradle/score", {
-        date: new Date(),
-        guesses,
-        ip: ipData,
-        answer: country,
-        won,
-      });
+      axios
+        .post("/tradle/score", {
+          date: new Date(),
+          guesses,
+          ip: ipData,
+          answer: country,
+          won,
+        })
+        .catch(function (error) {
+          if (error.response) {
+            // Request made and server responded
+            console.log(
+              `⚠️ ${error.response.status}: Unable to post tradle score.`
+            );
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.log(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log("Error", error.message);
+          }
+        });
     }
   }, [guesses, ipData, won, country]);
 
