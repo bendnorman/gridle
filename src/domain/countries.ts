@@ -588,7 +588,7 @@ export const countries: Country[] = [
   { code: "MA", latitude: 31.791702, longitude: -7.09262, name: "Morocco" },
   // { code: "MC", latitude: 43.750298, longitude: 7.412841, name: "Monaco" },
   { code: "MD", latitude: 47.411631, longitude: 28.369885, name: "Moldova" },
-  // { code: "ME", latitude: 42.708678, longitude: 19.37439, name: "Montenegro" },
+  { code: "ME", latitude: 42.708678, longitude: 19.37439, name: "Montenegro" },
   {
     code: "MF",
     latitude: 18.075,
