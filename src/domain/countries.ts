@@ -402,6 +402,12 @@ export const countries: Country[] = [
     name: "Cape Verde",
   },
   {
+    code: "CW",
+    latitude: 12.11666,
+    longitude: -68.9333,
+    name: "Curaçao",
+  },
+  {
     code: "CX",
     latitude: -10.447525,
     longitude: 105.690449,
@@ -1063,6 +1069,7 @@ export const countryISOMapping: Iso = {
   CM: "CMR",
   CA: "CAN",
   CV: "CPV",
+  CW: "CUW",
   KY: "CYM",
   CF: "CAF",
   TD: "TCD",
