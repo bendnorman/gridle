@@ -1,6 +1,6 @@
 # Gridle
 
-Play this international wordle here: https://gridle.bendnorman.com/!
+Play the Wordle game for energy nerds: https://gridle.bendnorman.com/!
 
 # Development requirements
 
@@ -20,5 +20,5 @@ npm start
 
 ## Resources used:
 
-- Countries with long/lat => https://developers.google.com/public-data/docs/canonical/countries_csv
-- Country emojis => https://www.npmjs.com/package/country-emoji
+- US State Net generation data => https://catalystcoop-pudl.readthedocs.io/en/dev/data_dictionaries/pudl_db.html#denorm-generation-fuel-combined-eia923
+- US State geometries => https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html
