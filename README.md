@@ -1,6 +1,6 @@
-# Tradle
+# Gridle
 
-Play this international wordle here: https://oec.world/en/tradle/!
+Play this international wordle here: https://gridle.bendnorman.com/!
 
 # Development requirements
 

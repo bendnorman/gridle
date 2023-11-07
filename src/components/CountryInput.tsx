@@ -1,10 +1,11 @@
-import React, { forwardRef, Dispatch, SetStateAction } from "react";
+import { Autocomplete, Group, Text } from "@mantine/core";
+import React, { Dispatch, SetStateAction, forwardRef } from "react";
 import {
   countries,
   fictionalCountries,
   sanitizeCountryName,
 } from "../domain/countries";
-import { Group, Text, Autocomplete } from "@mantine/core";
+
 import { flag } from "country-emoji";
 
 interface CountryInputProps {
@@ -24,7 +25,6 @@ const AutoCompleteItem = forwardRef<HTMLDivElement, ItemProps>(
   ({ id, value, isAprilFools = false, ...others }: ItemProps, ref) => (
     <div ref={ref} {...others}>
       <Group noWrap>
-        <Text>{flag(id)}</Text>
         <div>
           <Text>{value}</Text>
         </div>
