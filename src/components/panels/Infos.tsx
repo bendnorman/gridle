@@ -174,7 +174,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
           . Source code on{" "}
           <a
             className="underline"
-            href="https://github.com/bendnorman/tradle"
+            href="https://github.com/bendnorman/gridle"
             target="_blank"
             rel="noopener noreferrer"
           >
