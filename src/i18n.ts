@@ -1,5 +1,5 @@
-import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 const resources = {
@@ -8,7 +8,7 @@ const resources = {
       placeholder: "Country, territory...",
       guess: "Guess",
       share: "Share",
-      showOnGoogleMaps: "View on the OEC",
+      showOnGoogleMaps: "View the state's energy profile",
       welldone: "Well done!",
       unknownCountry: "Unknown country!",
       copy: "Copied results to clipboard",
@@ -32,7 +32,8 @@ const resources = {
         averageBestDistance: "Best Distances Average",
         guessDistribution: "Guess distribution:",
       },
-      buyMeACoffee: "Get more trade data on the OEC! 🌎",
+      buyMeACoffee:
+        "Get more US energy data from the Public Utility Liberation Project ⚡",
     },
   },
   fr: {

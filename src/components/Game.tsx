@@ -1,4 +1,5 @@
-import { DateTime } from "luxon";
+import * as geolib from "geolib";
+
 import React, {
   useCallback,
   useEffect,
@@ -6,24 +7,25 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { toast } from "react-toastify";
 import {
   countries,
-  getCountryName,
-  sanitizeCountryName,
   countryISOMapping,
   fictionalCountries,
+  getCountryName,
+  sanitizeCountryName,
 } from "../domain/countries";
-import { useGuesses } from "../hooks/useGuesses";
+
 import { CountryInput } from "./CountryInput";
-import * as geolib from "geolib";
-import { Share } from "./Share";
+import { DateTime } from "luxon";
 import { Guesses } from "./Guesses";
-import { useTranslation } from "react-i18next";
 import { SettingsData } from "../hooks/useSettings";
-import { useMode } from "../hooks/useMode";
-import { useCountry } from "../hooks/useCountry";
+import { Share } from "./Share";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useCountry } from "../hooks/useCountry";
+import { useGuesses } from "../hooks/useGuesses";
+import { useMode } from "../hooks/useMode";
+import { useTranslation } from "react-i18next";
 
 function getDayString() {
   return DateTime.now().toFormat("yyyy-MM-dd");
@@ -164,13 +166,13 @@ export function Game({ settingsData }: GameProps) {
   }, [guesses, ipData, won, country]);
 
   let iframeSrc = "https://oec.world/en/tradle/aprilfools.html";
-  let oecLink = "https://oec.world/";
+  let oecLink = "https://catalyst.coop/pudl";
   const country3LetterCode = country?.code
     ? countryISOMapping[country.code].toLowerCase()
     : "";
   if (!isAprilFools) {
-    iframeSrc = `https://oec.world/en/visualize/embed/tree_map/hs92/export/${country3LetterCode}/all/show/2021/?controls=false&title=false&click=false`;
-    oecLink = `https://oec.world/en/profile/country/${country3LetterCode}`;
+    iframeSrc = `//plotly.com/~bennett.norman/${country3LetterCode}.embed?showlink=false`;
+    oecLink = `https://www.eia.gov/state/print.php?sid=${country?.code}`;
   }
 
   return (
@@ -186,7 +188,7 @@ export function Game({ settingsData }: GameProps) {
       )}
       {/* <div className="my-1 mx-auto"> */}
       <h2 className="font-bold text-center">
-        Guess which country exports these products!
+        Guess which US State has this electricity generation mix!
       </h2>
       <div
         style={{
@@ -287,7 +289,7 @@ export function Game({ settingsData }: GameProps) {
               </button> */}
               <div className="text-left">
                 <button className="my-2 inline-block justify-end bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded items-center">
-                  {isAprilFools ? "🪄" : "🌍"} <span>Guess</span>
+                  {isAprilFools ? "🪄" : "⚡️"} <span>Guess</span>
                 </button>
               </div>
             </div>

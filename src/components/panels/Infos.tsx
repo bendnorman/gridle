@@ -1,9 +1,9 @@
 import { Guesses } from "../Guesses";
 import { Panel } from "./Panel";
 import React from "react";
+import { SettingsData } from "../../hooks/useSettings";
 import { Tradele } from "../Tradele";
 import { formatDistance } from "../../domain/geography";
-import { SettingsData } from "../../hooks/useSettings";
 
 interface InfosProps {
   isOpen: boolean;
@@ -20,14 +20,13 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
         </div>
         <div>
           What exactly am I trying to guess? Each day you&apos;ll see a
-          different treemap of the exports for a particular country. Each
-          rectangle represents the share of a given product proportional to its
-          percentage of exports for that country.
+          different stacked area chart of electricity generation by fuel type
+          within a US State since 2001.
         </div>
-        <div>Each guess must be a valid country, territory, ...</div>
+        <div>Each guess must be a US state.</div>
         <div>
           After each guess, you will have the distance, the direction and the
-          proximity from your guess and the target country.
+          proximity from your guess and the target state.
         </div>
       </div>
       <div className="space-y-3 border-b-2 border-gray-200 pb-3 mb-3">
@@ -37,19 +36,18 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
             rowCount={1}
             guesses={[
               {
-                name: "Chile",
-                direction: "NE",
-                distance: 13_557_000,
+                name: "Alaska",
+                direction: "SE",
+                distance: 5_742_139,
               },
             ]}
             settingsData={settingsData}
           />
           <div className="my-2">
-            Your guess <span className="uppercase font-bold">Chile</span> is{" "}
-            {formatDistance(13557000, settingsData.distanceUnit)} away from the
-            target country, the target country is in the North-East direction
-            and you have a only 32% of proximity because it&apos;s quite far
-            away!
+            Your guess <span className="uppercase font-bold">Alaska</span> is{" "}
+            {formatDistance(5_742_139, settingsData.distanceUnit)} away from the
+            target state, the target state is in the South-East direction and
+            you have a only 30% of proximity because it&apos;s quite far away!
           </div>
         </div>
         <div>
@@ -57,18 +55,18 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
             rowCount={1}
             guesses={[
               {
-                name: "Finland",
-                direction: "SE",
-                distance: 3_206_000,
+                name: "Virginia",
+                direction: "SW",
+                distance: 688_799,
               },
             ]}
             settingsData={settingsData}
           />
           <div className="my-2">
             Your second guess{" "}
-            <span className="uppercase font-bold">Finland</span> is getting
-            closer! {formatDistance(3206000, settingsData.distanceUnit)} away,
-            South-East direction and 84%!
+            <span className="uppercase font-bold">Virginia</span> is getting
+            closer! {formatDistance(688_799, settingsData.distanceUnit)} away,
+            South-West direction and 92%!
           </div>
         </div>
         <div>
@@ -76,7 +74,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
             rowCount={1}
             guesses={[
               {
-                name: "Lebanon",
+                name: "Georgia",
                 direction: "N",
                 distance: 0,
               },
@@ -84,8 +82,8 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
             settingsData={settingsData}
           />
           <div className="my-2">
-            Next guess, <span className="uppercase font-bold">Lebanon</span>, is
-            the correct country! Congrats! 🎉
+            Next guess, <span className="uppercase font-bold">Georgia</span>, is
+            the correct state! Congrats! 🎉
           </div>
         </div>
       </div>
@@ -96,12 +94,12 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
         <div className="font-bold">About distance</div>
         <div>
           The distances displayed correspond to the distances between the
-          selected and the target territory centers.
+          selected and the target state centers.
         </div>
         <div>
-          For instance, the computed distance between United States and Canada
-          is around {formatDistance(2_260_000, settingsData.distanceUnit)} even
-          if they have a common border.
+          For instance, the computed distance between Alabama and Georgia is
+          around {formatDistance(318_650, settingsData.distanceUnit)} even if
+          they have a common border.
         </div>
       </div>
       <div className="space-y-3 border-b-2 border-gray-200 pb-3 mb-3">
@@ -109,11 +107,29 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
         by{" "}
         <a
           className="underline"
+          href="https://games.oec.world/en/tradle/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tradle
+        </a>{" "}
+        created by{" "}
+        <a
+          className="underline"
+          href="https://oec.world/en"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          The Observatory of Economic Complexity
+        </a>{" "}
+        which itself was <span className="font-bold">heavily</span> inspired by{" "}
+        <a
+          className="underline"
           href="https://worldle.teuteuf.fr/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Worldle
+          Worldle,
         </a>{" "}
         created by{" "}
         <a
@@ -124,7 +140,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
         >
           @teuteuf
         </a>{" "}
-        which itself was <span className="font-bold">heavily</span> inspired by{" "}
+        and{" "}
         <a
           className="underline"
           href="https://www.powerlanguage.co.uk/wordle/"
@@ -149,16 +165,16 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
           Made by{" "}
           <a
             className="underline"
-            href="https://twitter.com/ximoes"
+            href="https://twitter.com/bendnorman"
             target="_blank"
             rel="noopener noreferrer"
           >
-            @ximoes
+            @bendnorman
           </a>
           . Source code on{" "}
           <a
             className="underline"
-            href="https://github.com/alexandersimoes/tradle"
+            href="https://github.com/bendnorman/tradle"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -169,11 +185,11 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
         <div>
           <a
             className="underline"
-            href="https://oec.world"
+            href="https://catalyst.coop/pudl/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn more about trade data on the OEC! 🌎
+            Learn more about the Public Utility Liberation Data Project ⚡
           </a>
         </div>
       </div>

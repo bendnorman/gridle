@@ -10,7 +10,7 @@ export interface SettingsData {
 const defaultSettingsData: SettingsData = {
   noImageMode: false,
   rotationMode: false,
-  distanceUnit: "km",
+  distanceUnit: "miles",
   theme: window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light",

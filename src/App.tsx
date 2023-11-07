@@ -1,13 +1,16 @@
-import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Game } from "./components/Game";
+
+import { Flip, ToastContainer } from "react-toastify";
 import React, { useEffect, useState } from "react";
+
+import { Game } from "./components/Game";
 import { Infos } from "./components/panels/Infos";
-import { useTranslation } from "react-i18next";
 import { InfosFr } from "./components/panels/InfosFr";
 import { Settings } from "./components/panels/Settings";
-import { useSettings } from "./hooks/useSettings";
 import { Stats } from "./components/panels/Stats";
+import { Tradele } from "./components/Tradele";
+import { useSettings } from "./hooks/useSettings";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -29,7 +32,7 @@ function App() {
   return (
     <>
       <div className="absolute hidden md:block">
-        <img src="images/top-ship.png" alt="logo" width="371" />
+        {/* <img src="images/top-ship.png" alt="logo" width="371" /> */}
       </div>
       <ToastContainer
         hideProgressBar
@@ -89,12 +92,7 @@ function App() {
             </button>
             <h1 className="text-center my-1 flex-auto">
               {/* <span className="text-red-600">TRADE</span>LE */}
-              <img
-                className="block m-auto"
-                src="images/oec-tradle-logo.png"
-                alt="logo"
-                width="120"
-              />
+              A new <Tradele /> will be available every day!
             </h1>
             <button
               className="ml-3 text-xl"
@@ -133,7 +131,7 @@ function App() {
           <footer className="flex justify-center text-sm mt-8 mb-1">
             <a
               className="underline pl-1"
-              href="https://oec.world"
+              href="https://catalyst.coop/pudl"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -142,7 +140,7 @@ function App() {
           </footer>
         </div>
         <div className="absolute bottom-0 right-0 z-0">
-          <img src="images/bottom-ship.png" alt="logo" width="342" />
+          {/* <img src="images/bottom-ship.png" alt="logo" width="342" /> */}
         </div>
       </div>
     </>
