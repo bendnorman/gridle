@@ -18,12 +18,12 @@ jobs:
         with:
           credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
 
-      # This example uses the docker login action
-      - uses: "docker/login-action@v1"
-        with:
-          registry: "us-central1-docker.pkg.dev" # or REGION-docker.pkg.dev
-          username: "oauth2accesstoken"
-          password: "${{ steps.auth.outputs.access_token }}"
+      # # This example uses the docker login action
+      # - uses: "docker/login-action@v1"
+      #   with:
+      #     registry: "us-central1-docker.pkg.dev" # or REGION-docker.pkg.dev
+      #     username: "oauth2accesstoken"
+      #     password: "${{ steps.auth.outputs.access_token }}"
 
       # This example runs "docker login" directly to Artifact Registry.
       - run: |-
@@ -33,4 +33,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          file: ./gridle_game/Dockerfile
           tags: us-central1-docker.pkg.dev/geography-games/gridle-repo/gridle:latest
