@@ -1,0 +1,19 @@
+name: gridle
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Packages required for setting up the environment
+  - pip>=21,<23
+  - python>=3.8,<3.11
+
+  - pandas
+  - geopandas
+  - sqlalchemy
+  - plotly
+  - tqdm
+  - chart-studio
+
+  # Jupyter packages:
+  - jupyterlab>=3.2,<4
+  - nbconvert>=6,<7 # Used to clear notebook outputs in pre-commit hooks
