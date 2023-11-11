@@ -34,5 +34,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          file: ./gridle_game/Dockerfile
+          context: "{{defaultContext}}:gridle_game"
           tags: us-central1-docker.pkg.dev/geography-games/gridle-repo/gridle:latest
