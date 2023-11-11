@@ -1,0 +1,31 @@
+name: test-gridle-image-build
+
+on:
+  pull_request:
+
+jobs:
+  test-gridle-image-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v1"
+        with:
+          token_format: "access_token"
+          credentials_json: "${{ secrets.GOOGLE_CREDENTIALS }}"
+
+      # This example uses the docker login action
+      - uses: "docker/login-action@v1"
+        with:
+          registry: "us-central1-docker.pkg.dev" # or REGION-docker.pkg.dev
+          username: "oauth2accesstoken"
+          password: "${{ steps.auth.outputs.access_token }}"
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          context: "{{defaultContext}}:gridle_game"
+          tags: us-central1-docker.pkg.dev/geography-games/gridle-repo/gridle:latest
