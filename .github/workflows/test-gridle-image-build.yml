@@ -1,12 +1,10 @@
-name: cd
+name: test-gridle-image-build
 
 on:
-  push:
-    branches:
-      - "main"
+  pull_request:
 
 jobs:
-  deploy-gridle:
+  test-gridle-image-build:
     runs-on: ubuntu-latest
     steps:
       - uses: "actions/checkout@v4"
@@ -28,12 +26,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          push: true
+          push: false
           context: "{{defaultContext}}:gridle_game"
           tags: us-central1-docker.pkg.dev/geography-games/gridle-repo/gridle:latest
-
-      - id: deploy
-        uses: "google-github-actions/deploy-cloudrun@v1"
-        with:
-          service: gridle
-          image: us-central1-docker.pkg.dev/geography-games/gridle-repo/gridle:latest
