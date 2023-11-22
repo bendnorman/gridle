@@ -189,7 +189,7 @@ export function Infos({ isOpen, close, settingsData }: InfosProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn more about the Public Utility Liberation Data Project ⚡
+            Learn more about the Public Utility Data Liberation Project ⚡
           </a>
         </div>
       </div>
