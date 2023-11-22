@@ -550,7 +550,7 @@ export const countryISOMapping: Iso = {
   WA: "47",
   WI: "192",
   WV: "218",
-  W: "69",
+  WY: "69",
 };
 
 export function getCountryPrettyName(
