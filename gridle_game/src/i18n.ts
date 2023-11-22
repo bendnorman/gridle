@@ -33,7 +33,7 @@ const resources = {
         guessDistribution: "Guess distribution:",
       },
       buyMeACoffee:
-        "Get more US energy data from the Public Utility Liberation Project ⚡",
+        "Get more US energy data from the Public Utility Data Liberation Project ⚡",
     },
   },
   fr: {
