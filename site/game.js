@@ -59,10 +59,24 @@ $("guess-form").addEventListener("submit", (event) => {
   render();
 });
 
+// Phones open the system share sheet (Messages, WhatsApp, ...). Desktop browsers
+// can have a share API too, but copying is what people expect there.
+const useShareSheet = navigator.share && matchMedia("(pointer: coarse)").matches;
+$("share").textContent = useShareSheet ? "Share result" : "Copy result";
+
 $("share").addEventListener("click", async () => {
+  const text = shareText();
+  if (useShareSheet) {
+    try {
+      return await navigator.share({ text });
+    } catch (error) {
+      if (error.name === "AbortError") return; // they closed the share sheet
+      // Otherwise fall through and copy instead.
+    }
+  }
   try {
-    await navigator.clipboard.writeText(shareText());
-    say("Copied your result to the clipboard.");
+    await navigator.clipboard.writeText(text);
+    say("Copied your result. Paste it to a friend!");
   } catch {
     say("Couldn't copy. Your browser blocked clipboard access.");
   }
