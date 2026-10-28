@@ -37,10 +37,10 @@ its color in `site/style.css` (`--fuel-<name>`).
 
 ## Deploying
 
-Pushing to `main` publishes `site/` to GitHub Pages
-(`.github/workflows/deploy-pages.yml`). There's no build step; the files are
-served as-is. To redeploy without a code change, run the workflow from the
-Actions tab.
+The site is hosted on Cloudflare, which is connected to this GitHub repo and
+deploys `site/` on every push to `main` (and a preview for each pull request).
+`wrangler.jsonc` tells Cloudflare which folder to serve. There's no build step;
+the files are served as-is.
 
 ## Running locally
 
