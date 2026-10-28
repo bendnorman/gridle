@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - "main"
-      - "claude-rework"
   workflow_dispatch: # allows a manual redeploy from the Actions tab
 
 permissions:
