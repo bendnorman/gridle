@@ -20,7 +20,7 @@ const answer = data.states[preview] ? preview : dailyState(day);
 const storageKey = data.states[preview] ? null : `gridle-${puzzleNumber}`;
 
 let guesses = load(storageKey);
-let mode = "share";
+let mode = "twh";
 
 // --- Chart -----------------------------------------------------------------
 
