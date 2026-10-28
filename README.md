@@ -16,7 +16,6 @@ site/                The whole game: static HTML, CSS and JavaScript, no build s
   chart.js           Draws the stacked area chart as SVG
   style.css          Styles, including the fuel colors (light and dark mode)
   states.json        Generated data: yearly TWh by fuel for every state
-Dockerfile           Serves site/ with nginx on port 8080
 ```
 
 ## Updating the data
@@ -35,6 +34,13 @@ fetch fresh data.
 To change how fuels are grouped, edit `FUEL_GROUPS` in `build_data.py`. If you
 add or rename a fuel, also add its label in `site/chart.js` (`FUEL_LABELS`) and
 its color in `site/style.css` (`--fuel-<name>`).
+
+## Deploying
+
+Pushing to `main` publishes `site/` to GitHub Pages
+(`.github/workflows/deploy-pages.yml`). There's no build step; the files are
+served as-is. To redeploy without a code change, run the workflow from the
+Actions tab.
 
 ## Running locally
 

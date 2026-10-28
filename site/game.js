@@ -102,7 +102,7 @@ function shareText() {
     const yellow = proximity % 20 >= 10 ? 1 : 0;
     return "🟩".repeat(green) + "🟨".repeat(yellow) + "⬜".repeat(5 - green - yellow) + " " + ARROW_EMOJI[direction];
   });
-  return [`Gridle #${puzzleNumber} ${won ? guesses.length : "X"}/${MAX_GUESSES}`, ...lines, location.origin].join("\n");
+  return [`Gridle #${puzzleNumber} ${won ? guesses.length : "X"}/${MAX_GUESSES}`, ...lines, location.origin + location.pathname].join("\n");
 }
 
 function say(message) {
