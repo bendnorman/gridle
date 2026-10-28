@@ -1,0 +1,8 @@
+// Cloudflare config: serve the site/ folder as static files. There's no server code.
+{
+  "name": "gridle",
+  "compatibility_date": "2025-10-01",
+  "assets": {
+    "directory": "./site"
+  }
+}
