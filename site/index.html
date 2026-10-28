@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gridle</title>
+    <meta name="description" content="Guess the US state from its electricity generation mix." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="game.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><span class="accent">Grid</span>le</h1>
+      <p>Guess the US state from its electricity generation mix. You get five tries.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="chart-head">
+          <h2 id="chart-title">Yearly net generation by fuel</h2>
+          <div class="toggle" role="group" aria-label="Units">
+            <button type="button" data-mode="share" aria-pressed="true">Share</button>
+            <button type="button" data-mode="twh" aria-pressed="false">TWh</button>
+          </div>
+        </div>
+        <ul id="legend" class="legend"></ul>
+        <div id="chart" class="chart"></div>
+        <details>
+          <summary>Show as a table</summary>
+          <div id="table" class="table-wrap"></div>
+        </details>
+      </section>
+
+      <ol id="guesses" class="guesses"></ol>
+
+      <form id="guess-form">
+        <input id="guess-input" list="state-names" placeholder="Type a state…" autocomplete="off" aria-label="Your guess" />
+        <button type="submit">Guess</button>
+        <datalist id="state-names"></datalist>
+      </form>
+
+      <div id="result" hidden>
+        <p id="result-text"></p>
+        <button id="share" type="button">Copy result</button>
+        <a id="eia-link" target="_blank" rel="noopener"></a>
+      </div>
+
+      <p id="message" role="status"></p>
+    </main>
+
+    <footer>
+      Utility-scale generation from EIA Form 923, via
+      <a href="https://catalyst.coop/pudl" target="_blank" rel="noopener">PUDL</a>.
+      Arrows and distances point from your guess toward the answer.
+    </footer>
+  </body>
+</html>
