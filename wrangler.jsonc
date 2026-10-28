@@ -4,5 +4,7 @@
   "compatibility_date": "2025-10-01",
   "assets": {
     "directory": "./site"
-  }
+  },
+  // Lets Cloudflare build a preview URL for branches other than main.
+  "previews": {}
 }
