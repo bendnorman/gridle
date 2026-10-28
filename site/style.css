@@ -1,0 +1,331 @@
+/* Colors are tokens so light and dark mode swap in one place. The fuel colors
+   were checked for colorblind separation between stack neighbors; keep the
+   stacking order in data/build_data.py in sync if you change them. */
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --accent: #eb6834;
+  --good: #006300;
+
+  --fuel-nuclear: #6250d6;
+  --fuel-oil: #e34948;
+  --fuel-coal: #3d3c39;
+  --fuel-gas: #eb6834;
+  --fuel-hydro: #2a78d6;
+  --fuel-wind: #1baf7a;
+  --fuel-solar: #eda100;
+  --fuel-other: #008300;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --text: #f0efec;
+    --text-2: #c3c2b7;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #d95926;
+    --good: #0ca30c;
+
+    --fuel-nuclear: #9085e9;
+    --fuel-oil: #e66767;
+    --fuel-coal: #a8a7a0;
+    --fuel-gas: #d95926;
+    --fuel-hydro: #3987e5;
+    --fuel-wind: #199e70;
+    --fuel-solar: #c98500;
+    --fuel-other: #008300;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 16px;
+  background: var(--page);
+  color: var(--text);
+  font: 16px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+header p {
+  margin: 4px 0 16px;
+  color: var(--text-2);
+}
+.accent {
+  color: var(--accent);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* --- Chart ---------------------------------------------------------------- */
+
+.chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+.chart-head h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.toggle button {
+  border: 0;
+  padding: 4px 12px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.toggle button[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--surface);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 12px 0 4px;
+  padding: 0;
+  list-style: none;
+  color: var(--text-2);
+  font-size: 0.8125rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+
+.chart {
+  position: relative;
+  touch-action: pan-y;
+}
+.chart svg {
+  display: block;
+}
+.chart .grid {
+  stroke: var(--grid);
+}
+.chart .baseline {
+  stroke: var(--axis);
+}
+.chart .gap {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.chart .crosshair {
+  stroke: var(--text);
+  stroke-width: 1;
+}
+.chart .hit {
+  fill: transparent;
+  cursor: crosshair;
+}
+.chart .tick {
+  fill: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.chart .label {
+  fill: var(--text-2);
+  font-size: 12px;
+}
+.chart .label-value {
+  fill: var(--text);
+  font-weight: 600;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+.tooltip table {
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.tooltip td {
+  padding: 1px 0;
+}
+.tooltip td + td {
+  padding-left: 12px;
+  text-align: right;
+}
+.tooltip td:last-child {
+  color: var(--text-2);
+}
+.tooltip .total td {
+  border-top: 1px solid var(--grid);
+  padding-top: 3px;
+  font-weight: 600;
+}
+
+details {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+summary {
+  cursor: pointer;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 8px;
+}
+.table-wrap table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.table-wrap caption {
+  text-align: left;
+  padding-bottom: 4px;
+}
+.table-wrap th,
+.table-wrap td {
+  padding: 2px 8px;
+  text-align: right;
+  border-bottom: 1px solid var(--grid);
+}
+
+/* --- Guesses -------------------------------------------------------------- */
+
+.guesses {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+.guesses li {
+  display: grid;
+  grid-template-columns: 1fr auto 3.5em;
+  gap: 12px;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-variant-numeric: tabular-nums;
+}
+.guesses li span + span:last-child {
+  text-align: right;
+}
+.guesses li.empty {
+  grid-template-columns: 1fr;
+  color: var(--muted);
+  border-style: dashed;
+  background: transparent;
+}
+.guesses li.correct {
+  grid-template-columns: 1fr auto;
+  font-weight: 600;
+  color: var(--good);
+}
+
+form {
+  display: flex;
+  gap: 8px;
+}
+form[hidden] {
+  display: none;
+}
+input,
+button {
+  font: inherit;
+}
+#guess-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--axis);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+form button,
+#share {
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#result {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+#result[hidden] {
+  display: none;
+}
+#result-text {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+#message {
+  min-height: 1.4em;
+  color: var(--text-2);
+}
+
+footer {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}

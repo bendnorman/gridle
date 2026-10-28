@@ -27,5 +27,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: false
-          context: "{{defaultContext}}:gridle_game"
+          context: "{{defaultContext}}"
           tags: us-central1-docker.pkg.dev/geography-games/gridle-repo/gridle:latest

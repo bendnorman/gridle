@@ -1,0 +1,4 @@
+# Only the static site and nginx config go into the image.
+*
+!site
+!nginx.conf
